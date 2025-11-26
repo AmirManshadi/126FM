@@ -5,10 +5,11 @@ import { memo, useEffect, useRef, type ComponentProps } from "react";
 type Props = ComponentProps<"pre"> & {
   text: string;
   interval: number;
+  onComplete: () => void;
 };
 
 const AnimatedText = memo((props: Props) => {
-  const { text, interval, className, ...rest } = props;
+  const { text, interval, className, onComplete, ...rest } = props;
 
   const isMountedRef = useRef(true);
   const containerRef = useRef<HTMLPreElement | null>(null);
@@ -30,6 +31,7 @@ const AnimatedText = memo((props: Props) => {
       if (!isMountedRef.current) return;
 
       if (idx >= text.length) {
+        onComplete();
         return;
       }
 
