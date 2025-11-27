@@ -15,7 +15,7 @@ const reducer = (state: State, action: Action): State => {
       const payload = isFunction(action.payload)
         ? action.payload(state)
         : action.payload;
-      return { ...state, currentChannelId: payload.currentChannelId };
+      return { ...state, currentChannel: payload.currentChannel };
     }
     default:
       return state;

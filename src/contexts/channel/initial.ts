@@ -2,12 +2,12 @@ import type { Channel, ContextAction } from "@/types";
 
 type State = {
   channels: Channel[];
-  currentChannelId?: string;
+  currentChannel?: Channel;
 };
 
 const initialState: State = {
   channels: [],
-  currentChannelId: undefined,
+  currentChannel: undefined,
 };
 
 enum ActionType {
@@ -17,7 +17,7 @@ enum ActionType {
 
 type Action =
   | ContextAction<State, "channels", ActionType.SET_CHANNELS>
-  | ContextAction<State, "currentChannelId", ActionType.SET_CURRENT_CHANNEL>
+  | ContextAction<State, "currentChannel", ActionType.SET_CURRENT_CHANNEL>
   | undefined;
 
 const initialAction: Action = undefined;
