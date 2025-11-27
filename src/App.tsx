@@ -1,45 +1,48 @@
-import classes from "@/styles/app.module.css";
 import { useState } from "react";
-import AnimatedText from "./components/AnimatedText";
-import LoopingText from "./components/LoopingText";
-import RadioSpeaker from "./components/RadioSpeaker";
+import {
+  AnimatedText,
+  Container,
+  LoopingText,
+  RadioSpeaker,
+} from "./components";
+import { ChannelProvider } from "./context/channel";
+import type { Channel } from "./types";
+
+const CHANNELS: Channel[] = [];
 
 const App = () => {
   const [counter, setCounter] = useState(0);
 
   return (
-    <>
-      <h1>126FM</h1>
+    <ChannelProvider channels={CHANNELS}>
+      <Container>
+        <RadioSpeaker />
 
-      <RadioSpeaker className={classes["radio-speaker"]} />
+        <LoopingText text="Meow meow nigga" />
 
-      <LoopingText
-        className={classes["looping-text"]}
-        text="Meow meow nigga"
-      />
-
-      <AnimatedText
-        interval={20}
-        text="First text..."
-        onComplete={() => setCounter(counter + 1)}
-      />
-
-      {counter >= 1 && (
         <AnimatedText
-          interval={100}
-          text="Second text..."
+          interval={20}
+          text="First text..."
           onComplete={() => setCounter(counter + 1)}
         />
-      )}
 
-      {counter >= 2 && (
-        <AnimatedText
-          interval={50}
-          text="Third text..."
-          onComplete={() => setCounter(counter + 1)}
-        />
-      )}
-    </>
+        {counter >= 1 && (
+          <AnimatedText
+            interval={100}
+            text="Second text..."
+            onComplete={() => setCounter(counter + 1)}
+          />
+        )}
+
+        {counter >= 2 && (
+          <AnimatedText
+            interval={50}
+            text="Third text..."
+            onComplete={() => setCounter(counter + 1)}
+          />
+        )}
+      </Container>
+    </ChannelProvider>
   );
 };
 
