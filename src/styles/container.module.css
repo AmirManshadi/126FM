@@ -4,6 +4,9 @@
   --container-padding: 0 1rem;
   --container-margin: 0 auto;
 
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
   max-width: var(--container-max-width);
   min-width: var(--container-min-width);
   margin: var(--container-margin);
