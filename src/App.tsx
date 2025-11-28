@@ -2,6 +2,7 @@ import { BubbleText, Container, RadioFooter, RadioSpeaker } from "@/components";
 import { ChannelProvider } from "@/contexts/channel";
 import { ChannelType, type Channel } from "@/types";
 import { useState } from "react";
+import useAudioUnlock from "./hooks/useAudioUnlock";
 
 const CHANNELS: Channel[] = [
   {
@@ -43,6 +44,8 @@ const CHANNELS: Channel[] = [
 
 const App = () => {
   const [counter, setCounter] = useState(0);
+
+  useAudioUnlock();
 
   return (
     <ChannelProvider channels={CHANNELS}>
