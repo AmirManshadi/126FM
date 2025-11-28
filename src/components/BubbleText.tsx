@@ -1,8 +1,7 @@
 import classes from "@/styles/bubble-text.module.css";
 import clsx from "clsx";
 import type { ComponentProps } from "react";
-import type { AnimatedTextProps } from "./AnimatedText";
-import AnimatedText from "./AnimatedText";
+import { type AnimatedTextProps, AnimatedText } from "./AnimatedText";
 
 type Props = ComponentProps<"div"> &
   AnimatedTextProps & {
