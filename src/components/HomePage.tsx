@@ -6,7 +6,7 @@ import {
 import classes from "@/styles/home-page.module.css";
 import { ChevronLeft, Music } from "lucide-react";
 import { useState } from "react";
-import AnimatedText from "./AnimatedText";
+import { AnimatedText } from ".";
 
 type PageProps = {
   onBack: () => void;
