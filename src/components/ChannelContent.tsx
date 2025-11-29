@@ -11,8 +11,9 @@ const ChannelContent = () => {
       style={{
         display: "flex",
         flexDirection: "column",
+        width: "100%",
+        height: "100%",
         gap: "1rem",
-        height: "500px",
         overflowY: "scroll",
       }}
     >
