@@ -5,6 +5,7 @@ export type Channel = {
   currentProgram: string;
   type: ChannelType;
   content: ChannelContent[];
+  encrypted?: boolean;
 };
 
 export type ChannelContent = {
