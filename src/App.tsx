@@ -7,6 +7,7 @@ import {
 } from "@/components";
 import { ChannelProvider } from "@/contexts/channel";
 import { ChannelType, type Channel } from "@/types";
+import { GameProvider } from "./contexts/game";
 import useAudioUnlock from "./hooks/useAudioUnlock";
 
 const CHANNELS: Channel[] = [
@@ -40,6 +41,7 @@ const CHANNELS: Channel[] = [
     currentProgram: "",
     frequency: "99.0",
     type: ChannelType.Music,
+    encrypted: true,
     content: [
       {
         id: "1",
@@ -59,14 +61,16 @@ const App = () => {
   useAudioUnlock();
 
   return (
-    <ChannelProvider channels={CHANNELS}>
-      <Container>
-        <RadioSpeaker />
-        <Waveform />
-        <Pages />
-        <RadioFooter />
-      </Container>
-    </ChannelProvider>
+    <GameProvider>
+      <ChannelProvider channels={CHANNELS}>
+        <Container>
+          <RadioSpeaker />
+          <Waveform />
+          <Pages />
+          <RadioFooter />
+        </Container>
+      </ChannelProvider>
+    </GameProvider>
   );
 };
 
