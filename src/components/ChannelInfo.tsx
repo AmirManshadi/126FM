@@ -1,17 +1,19 @@
 import { useChannelDispatch, useChannelValue } from "@/contexts/channel";
 import { ActionType } from "@/contexts/channel/initial";
+import { useGameValue } from "@/contexts/game";
 import classes from "@/styles/channel-info.module.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Input from "./Input";
 import LoopingText from "./LoopingText";
 
 const ChannelInfo = () => {
+  const { answer } = useGameValue();
   const { currentChannel } = useChannelValue();
   const channelDispatch = useChannelDispatch();
 
   if (!currentChannel) return <br />;
 
-  const isEncrypted = currentChannel.id === "5";
+  const isEncrypted = currentChannel.encrypted && !answer;
 
   const getFreq = (): [string, string] => {
     const { frequency } = currentChannel;

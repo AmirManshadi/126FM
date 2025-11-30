@@ -1,16 +1,23 @@
+import { useGameValue } from "@/contexts/game";
 import classes from "@/styles/channel-content.module.css";
 import type { Channel } from "@/types";
 import AnimatedText from "./AnimatedText";
 import Conversation from "./Conversation";
+import EncryptedText from "./EncryptedText";
 
-type Props = Channel;
+type Props = Channel & { encrypted?: boolean };
 
 const ChannelContent = (props: Props) => {
-  const { id, content = [] } = props;
+  const { answer } = useGameValue();
+  const { id, content = [], encrypted = false } = props;
 
   if (!content.length) return null;
 
   const isConversation = content.length > 1;
+
+  const renderEncrypted = () => {
+    return <EncryptedText />;
+  };
 
   const renderConversation = () => {
     return <Conversation dialogues={content} />;
@@ -25,7 +32,11 @@ const ChannelContent = (props: Props) => {
       key={id}
       className={classes.root}
     >
-      {isConversation ? renderConversation() : renderSingleText()}
+      {encrypted && !answer
+        ? renderEncrypted()
+        : isConversation
+          ? renderConversation()
+          : renderSingleText()}
     </div>
   );
 };
